@@ -103,6 +103,19 @@ weeklyStudyGoal (Integer) – Target weekly study time (minutes)
 notes (String) – Optional notes
 
 
+**Colour**
+
+
+:root {
+  --main-color-light: #E3F2FD;    /* light sky blue */
+  --main-color-primary: #2196F3;  /* primary blue */
+  --main-color-dark: #0D47A1;     /* deep navy */
+  --main-color-text: #212121;     /* dark gray for text */
+  --main-color-bright: #FF5722;   /* coral orange accent */
+}
+
+
+
 
  **Calculations**
 
