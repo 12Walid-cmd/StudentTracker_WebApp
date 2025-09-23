@@ -1,94 +1,112 @@
-# README
+**Student Time Tracker**
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for?
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up?
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to?
-
-* Repo owner or admin
-* Other community or team contact
+ **Project Team**
 
 
 
-
-
-SPRINT 1 - INITIAL VERSION OF THE PROJECT
-
-Note not providing the requirements for the project for your developer results in 0 for this deliverable
-
-DEVELOPER-The version control repository component is created for the project that you are the developer.
+Business Client (BA): Bibas Basyal
 
 
 
-Ensure the project is public
-
-Can add team members to the project
-
-Send a link to your repo to the instructor, BA, and PM
-
-Ensure the project has issue tracking
-
---> Jira issues needs to be used this year.
-
-The following issues are to be created and completed for this sprint.
+Lead Developer: Anael Walid
 
 
 
-DEVELOPER-The issues below are created for the project you are the developer.
+Quality Control (QA): Rahul Rajak
 
 
 
-Work Item 1.
-
-Create the readme for the repository that you are the Developer. Specify the fields that are to be captured in the readme file. This is to specify the information similar to the instructor demo project repository cis2232\_2022026\_project\_maclean\_bj\_squash
+ **Project Description**
 
 
 
-Assign to DEV
-
-Work Item 2.
-
-Project must have the color implemented based on the details provided by the BA.
+The Student Time Tracker is a digital application designed to help students monitor and manage their study time across various subjects. The system addresses a common challenge students face: effectively balancing time between multiple subjects while maintaining consistent study habits.
 
 
 
-Assign to DEV
-
-Work Item 3.
-
-Project must have the project name and server.port set to 8080
+This tool will be developed as both a web application and a mobile application, ensuring accessibility and convenience for students on all devices. Users will be able to enter study sessions, including details such as:
 
 
 
-Assign to DEV
-
-Work Item 4.
-
-The createDatabase.sql file must be created based on the fields specified by the BA for the project.
+Subject studied
 
 
 
-Assign to DEV
+Duration
 
 
+
+Date
+
+
+
+Study method
+
+
+
+The system will automatically calculate progress toward daily and weekly study goals, providing students with valuable insights into their academic routines.
+
+
+
+Primary Objectives:
+
+
+
+Track how much time students spend on each subject
+
+
+
+Support meeting daily and weekly study goals
+
+
+
+Provide feedback on time allocation across subjects
+
+
+
+Build consistent and effective study habits
+
+
+
+ **Fields** 
+
+
+
+studentName (String) – Name of the student
+
+
+
+subject (String) – Subject studied
+
+
+
+studyDate (String, format: yyyy-MM-dd) – Date of study session
+
+
+
+studyDurationMinutes (Integer) – Duration of study (minutes)
+
+
+
+studyMethod (String) – Method used (Reading, Videos, Practice, Group Work)
+
+
+
+dailyStudyGoal (Integer) – Target daily study time (minutes)
+
+
+
+weeklyStudyGoal (Integer) – Target weekly study time (minutes)
+
+
+
+notes (String) – Optional notes
+
+
+
+ **Calculations**
+
+
+
+Weekly Study Progress (%)
 
