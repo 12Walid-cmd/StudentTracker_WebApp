@@ -18,6 +18,21 @@ public class StudentTracker {
     private int weeklyStudyGoal;
 
 
+    /**
+     * calculate the Weekly student progress percentage
+     *
+     * @return weekly study percentage
+     * @author WL
+     * @since 20250920
+     */
+    public double calculateWeeklyStudyProgress(){
+        double WeeklyStudyProgress = 0;
+        double  totalStudyMinutesPerWeek = studyDuration * 7;
+        WeeklyStudyProgress = (totalStudyMinutesPerWeek / weeklyStudyGoal)*100;
+        return WeeklyStudyProgress;
+    }
+
+
     public void getInformation() {
          studentName = CisUtility.getInputString("Enter Student Name");
          subject = CisUtility.getInputString("Enter your Subject");
