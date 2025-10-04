@@ -29,15 +29,18 @@ ALTER TABLE SkillsAssessmentSquashTechnical
     MODIFY id int(4) NOT NULL AUTO_INCREMENT COMMENT 'This is the primary key',
     AUTO_INCREMENT = 1;
 
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-22',	'2022-08-20 11:35:15','Maria Smith','BJ MacLean',		11,	5,	14,	78,	6,	59,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-11',	'2022-08-11 11:35:15','Rhonda Jones','BJ MacLean',		5,	7,	4,	36,	5,	38,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-07', '2022-08-07 11:35:15','Chad Collins','BJ MacLean',		8,	8,	4,	37,	5,	42,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-07', '2022-08-07 11:35:15','Rhonda Jones','BJ MacLean',		12,	8,	9,	53,	4,	42,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-07', '2022-08-05 11:35:15','Chad Collins','BJ MacLean',		8,	10,	7,	52,	3,	26,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-08',	'2022-08-08 11:35:15','Rhonda Jones','BJ MacLean',		10,	8,	8,	61,	6,	57,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-10',	'2022-08-10 11:35:15','Chad Collins','BJ MacLean',		17,	14,	8,	70,	13,	84,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-08',	'2022-08-08 11:35:15','Maria Smith','BJ MacLean',		17,	18,	12,	77,	8,	63,0);
--- insert into SkillsAssessmentSquashTechnical values(0, '2022-08-22',	'2022-08-20 11:35:15','Chad Collins','BJ MacLean',		14,	11,	10,	86,	16,	87,0);
+CREATE TABLE StudentStudyLog (
+                                 id INT AUTO_INCREMENT PRIMARY KEY,
+                                 studentName VARCHAR(50) NOT NULL,
+                                 subject VARCHAR(50) NOT NULL,
+                                 studyDate DATE NOT NULL,
+                                 studyDurationMinutes INT NOT NULL,
+                                 studyMethod VARCHAR(30) NOT NULL,
+                                 dailyStudyGoal INT NOT NULL,
+                                 weeklyStudyGoal INT NOT NULL,
+                                 notes VARCHAR(255),
+                                 createdDateTime DATETIME DEFAULT CURRENT_TIMESTAMP
+);
 
 INSERT INTO SkillsAssessmentSquashTechnical (id, assessmentDate, createdDateTime, athleteName, assessorName,
                                              forehandDrives, backhandDrives, forehandVolleyMax, forehandVolleySum,
