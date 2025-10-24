@@ -42,16 +42,10 @@ CREATE TABLE StudentStudyLog (
                                  createdDateTime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
-INSERT INTO SkillsAssessmentSquashTechnical (id, assessmentDate, createdDateTime, athleteName, assessorName,
-                                             forehandDrives, backhandDrives, forehandVolleyMax, forehandVolleySum,
-                                             backhandVolleyMax, backhandVolleySum, technicalScore)
-VALUES (1, '2022-08-22', '2023-11-07 01:38:48', 'Maria Smith', 'BJ MacLean', 11, 5, 14, 78, 6, 59, 1085),
-       (2, '2022-08-11', '2023-11-07 01:38:52', 'Rhonda Jones', 'BJ MacLean', 5, 7, 4, 36, 5, 38, 622),
-       (3, '2022-08-07', '2023-11-07 01:38:56', 'Chad Collins', 'BJ MacLean', 8, 8, 4, 37, 5, 42, 707),
-       (4, '2022-08-07', '2023-11-07 01:38:59', 'Rhonda Jones', 'BJ MacLean', 12, 8, 9, 53, 4, 42, 879),
-       (5, '2022-08-07', '2023-11-07 01:39:01', 'Chad Collins', 'BJ MacLean', 8, 10, 7, 52, 3, 26, 740),
-       (6, '2022-08-08', '2023-11-07 01:39:04', 'Rhonda Jones', 'BJ MacLean', 10, 8, 8, 61, 6, 57, 972),
-       (7, '2022-08-10', '2023-11-07 01:39:07', 'Chad Collins', 'BJ MacLean', 17, 14, 8, 70, 13, 84, 1403),
-       (8, '2022-08-08', '2023-11-07 01:39:10', 'Maria Smith', 'BJ MacLean', 17, 18, 12, 77, 8, 63, 1385),
-       (9, '2022-08-22', '2023-11-07 01:38:44', 'Chad Collins', 'BJ MacLean', 14, 11, 10, 86, 16, 87, 1448);
-
+INSERT INTO StudentStudyLog (studentName, subject, studyDate, studyDurationMinutes, studyMethod, dailyStudyGoal, weeklyStudyGoal, notes)
+VALUES
+    ('Walid Anael', 'Java Programming', '2025-10-20', 120, 'Practice', 90, 600, 'Worked on JDBC exercises'),
+    ('Maria Smith', 'Database Systems', '2025-10-21', 75, 'Reading', 60, 420, 'Reviewed normalization rules'),
+    ('John Brown', 'Web Development', '2025-10-22', 100, 'Videos', 80, 500, 'Watched Spring MVC tutorial'),
+    ('Sophie Lee', 'Networking Fundamentals', '2025-10-21', 60, 'Group Work', 60, 400, 'Group lab on IP addressing'),
+    ('Carlos Diaz', 'Cybersecurity Basics', '2025-10-23', 90, 'Practice', 75, 450, 'Hands-on with Kali Linux');
