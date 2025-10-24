@@ -1,33 +1,6 @@
-DROP DATABASE IF EXISTS cis2232_squash_skills;
-CREATE DATABASE cis2232_squash_skills;
-use cis2232_squash_skills;
-
--- ------------------------------------------------------------------------------
--- Note the table below to hold data associated with your project.  Expect one
--- table with 7-9 fields.
--- ------------------------------------------------------------------------------
-
-CREATE TABLE SkillsAssessmentSquashTechnical
-(
-    id                int(5),
-    assessmentDate    varchar(10) NOT NULL COMMENT 'yyyy-MM-dd',
-    createdDateTime   varchar(20) NOT NULL COMMENT 'yyyy-MM-dd hh:mm:ss',
-    athleteName       varchar(50) NOT NULL COMMENT 'Athletes name',
-    assessorName      varchar(50) NOT NULL COMMENT 'Athletes name',
-    forehandDrives    int(5) COMMENT 'Number of forehand drives',
-    backhandDrives    int(5) COMMENT 'Number of backhand drives',
-    forehandVolleyMax int(5) COMMENT 'Max number of forehand volleys',
-    forehandVolleySum int(5) COMMENT 'Sum of forehand volleys',
-    backhandVolleyMax int(5) COMMENT 'Max number of backhand volleys',
-    backhandVolleySum int(5) COMMENT 'Sum of backhand volleys',
-    technicalScore    int(5) COMMENT 'Score calculated at submission'
-) COMMENT 'This table holds technical skills assessment details';
-
-ALTER TABLE SkillsAssessmentSquashTechnical
-    ADD PRIMARY KEY (id);
-ALTER TABLE SkillsAssessmentSquashTechnical
-    MODIFY id int(4) NOT NULL AUTO_INCREMENT COMMENT 'This is the primary key',
-    AUTO_INCREMENT = 1;
+DROP DATABASE IF EXISTS cis2232_student_tracker;
+CREATE DATABASE cis2232_student_tracker;
+USE cis2232_student_tracker;
 
 CREATE TABLE StudentStudyLog (
                                  id INT AUTO_INCREMENT PRIMARY KEY,
