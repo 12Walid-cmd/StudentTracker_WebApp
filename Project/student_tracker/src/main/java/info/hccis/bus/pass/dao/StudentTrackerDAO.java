@@ -45,7 +45,7 @@ public class StudentTrackerDAO {
     //=========================
     public ArrayList<StudentStudyRecord> selectAll() {
         ArrayList<StudentStudyRecord> records = new ArrayList<>();
-        String sql = "SELECT * FROM student_study_records";
+        String sql = "SELECT * FROM StudentStudyLog";
 
         try (Statement stmt = conn.createStatement()) {
             rs = stmt.executeQuery(sql);
@@ -62,7 +62,7 @@ public class StudentTrackerDAO {
     //=========================
     public ArrayList<StudentStudyRecord> selectByStudentName(String studentName) {
         ArrayList<StudentStudyRecord> records = new ArrayList<>();
-        String sql = "SELECT * FROM student_study_records WHERE studentName = ?";
+        String sql = "SELECT * FROM StudentStudyLog WHERE studentName = ?";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, studentName);
@@ -80,7 +80,7 @@ public class StudentTrackerDAO {
     //=========================
     public ArrayList<StudentStudyRecord> selectByDateRange(Date startDate, Date endDate) {
         ArrayList<StudentStudyRecord> records = new ArrayList<>();
-        String sql = "SELECT * FROM student_study_records WHERE studyDate BETWEEN ? AND ?";
+        String sql = "SELECT * FROM StudentStudyLog WHERE studyDate BETWEEN ? AND ?";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setDate(1, startDate);
@@ -103,15 +103,15 @@ public class StudentTrackerDAO {
         while (rs.next()) {
             StudentStudyRecord record = new StudentStudyRecord();
             record.setId(rs.getInt("id"));
-            record.setStudentName(rs.getString("student_name"));
+            record.setStudentName(rs.getString("studentName"));
             record.setSubject(rs.getString("subject"));
-            record.setStudyDate(rs.getDate("study_date"));
-            record.setStudyDurationMinutes(rs.getInt("study_duration_minutes"));
-            record.setStudyMethod(rs.getString("study_method"));
-            record.setDailyStudyGoal(rs.getInt("daily_study_goal"));
-            record.setWeeklyStudyGoal(rs.getInt("weekly_study_goal"));
+            record.setStudyDate(rs.getDate("studyDate"));
+            record.setStudyDurationMinutes(rs.getInt("studyDurationMinutes"));
+            record.setStudyMethod(rs.getString("studyMethod"));
+            record.setDailyStudyGoal(rs.getInt("dailystudyGoal"));
+            record.setWeeklyStudyGoal(rs.getInt("weeklystudyGoal"));
             record.setNotes(rs.getString("notes"));
-            record.setCreatedDateTime(rs.getTimestamp("created_date_time"));
+            record.setCreatedDateTime(rs.getTimestamp("createdDateTime"));
 
             records.add(record);
         }

@@ -36,31 +36,58 @@ public class StudentTrackerController {
     /**
      * Show input form for report
      */
-    @RequestMapping("/report")
+    @RequestMapping("/report/student/tracker/name")
     public String showReportInputForm(Model model) {
         model.addAttribute("record", new StudentStudyRecord());
-        return "studenttracker/reportStudentTrackerName"; // HTML form view
+        return "report/reportStudentTrackerName"; // HTML form view
     }
 
     /**
      * Process report (generate + display + file output)
      */
+//    @PostMapping("/report")
+//    public String processReport(@RequestParam("studentName") String studentName, Model model) throws IOException {
+//
+//        // 1️ Get report data from DAO
+//        ArrayList<StudentStudyRecord> records = dao.selectByStudentName(studentName);
+//
+//        // 2️ Add to model for display
+//        model.addAttribute("records", records);
+//        model.addAttribute("studentName", studentName);
+//
+//        // 3️ Write report to file
+//        writeReportToFile(records, studentName);
+//
+//        // ⃣ Return the results view
+//        return "studenttracker/reportResults";
+//    }
     @PostMapping("/report")
-    public String processReport(@RequestParam("studentName") String studentName, Model model) throws IOException {
-
-        // 1️ Get report data from DAO
+    public String generateReport(@RequestParam String studentName, Model model) throws IOException {
+        // Example: Fetch data from database
         ArrayList<StudentStudyRecord> records = dao.selectByStudentName(studentName);
 
-        // 2️ Add to model for display
-        model.addAttribute("records", records);
-        model.addAttribute("studentName", studentName);
+        if (records.isEmpty()) {
+            model.addAttribute("message", "No study records found for " + studentName);
+        } else {
+            writeReportToFile(records ,studentName);
+            model.addAttribute("records", records);
+        }
 
-        // 3️ Write report to file
-        writeReportToFile(records, studentName);
-
-        // ⃣ Return the results view
-        return "studenttracker/reportResults";
+        // Return same view to show results below form
+        return "report/reportStudentTrackerName";
     }
+    /**
+     * Show all student study records (list page)
+     */
+    @GetMapping("")
+    public String list(Model model) {
+        model.addAttribute("records", dao.selectAll());
+        model.addAttribute("record", new StudentStudyRecord());
+        return "studenttracker/list"; // y list page (not report)
+    }
+
+
+
 
     /**
      * Helper to write report to a file
@@ -68,7 +95,7 @@ public class StudentTrackerController {
     private void writeReportToFile(ArrayList<StudentStudyRecord> records, String studentName) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
         String timestamp = LocalDateTime.now().format(formatter);
-        String fileName = "C:\\cis2232\\StudentReport_" + studentName + "_" + timestamp + ".txt";
+        String fileName = "C:\\ciss2232\\StudentReport_" + studentName + "_" + timestamp + ".txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("STUDENT STUDY REPORT\n");
