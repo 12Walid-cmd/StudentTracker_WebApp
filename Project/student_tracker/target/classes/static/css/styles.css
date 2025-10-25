@@ -5,13 +5,13 @@ html{
 }
 
 :root {
-    /*Variable for team color*/
-    /*light ac3e37 main 770711 dark 470000*/
-    --main-color-light: #9c9a9a ;
-    --main-color-primary: #9c9a9a ;
-    --main-color-dark: #000000;
-    --main-color-text: #ffffff;
-    --main-color-bright:#fcba03;
+
+        --main-color-light: #E3F2FD;    /* light sky blue */
+        --main-color-primary: #2196F3;  /* primary blue */
+        --main-color-dark: #0D47A1;     /* deep navy */
+        --main-color-text: #212121;     /* dark gray for text */
+        --main-color-bright: #FF5722;   /* bright coral orange accent */
+
 
 }
 

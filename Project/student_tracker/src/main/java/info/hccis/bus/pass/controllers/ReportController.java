@@ -74,7 +74,7 @@ public class ReportController {
 
         model.addAttribute("reportInput", reportBusPass);
 
-        return "report/reportBusPassDateRange";
+        return "reportStudentTracker";
     }
 
     /**
@@ -104,7 +104,7 @@ public class ReportController {
         //Put object in model so it can be used on the view (html)
        model.addAttribute("reportInput", reportBusPass);
 
-        return "report/reportBusPassDateRange";
+        return "reportStudentTracker";
     }
 
     /**

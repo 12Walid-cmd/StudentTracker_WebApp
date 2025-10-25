@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourcePerFileMappings">
+    <file url="file://$PROJECT_DIR$/src/main/resources/db/mysql/createDatabase1.sql" value="91fda59f-7ffc-4ff1-81a2-0c1aba7f6ef2" />
+  </component>
+</project>
