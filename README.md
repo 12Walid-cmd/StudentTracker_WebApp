@@ -1,6 +1,6 @@
 **Student Time Tracker**
 
- **Project Team**
+**Project Team**
 
 
 
@@ -16,7 +16,7 @@ Quality Control (QA): Rahul Rajak
 
 
 
- **Project Description**
+**Project Description**
 
 
 
@@ -68,7 +68,7 @@ Build consistent and effective study habits
 
 
 
- **Fields** 
+**Fields**
 
 
 
@@ -103,23 +103,35 @@ weeklyStudyGoal (Integer) – Target weekly study time (minutes)
 notes (String) – Optional notes
 
 
+
 **Colour**
 
 
 
-  --main-color-light: #E3F2FD;    /* light sky blue */
-  --main-color-primary: #2196F3;  /* primary blue */
-  --main-color-dark: #0D47A1;     /* deep navy */
-  --main-color-text: #212121;     /* dark gray for text */
-  --main-color-bright: #FF5722;   /* coral orange accent */
+--main-color-light: #E3F2FD;    /\* light sky blue */
+--main-color-primary: #2196F3;  /* primary blue */
+--main-color-dark: #0D47A1;     /* deep navy */
+--main-color-text: #212121;     /* dark gray for text */
+--main-color-bright: #FF5722;   /* coral orange accent \*/
 
 
 
 
 
- **Calculations**
+**Calculations**
 
 
 
 Weekly Study Progress (%)
 
+
+
+
+
+
+
+**Report Details**
+
+
+
+1. Provide all the student records for a student in our database. The user enters a name and the report will provide all  the records that have the name of the student.  
