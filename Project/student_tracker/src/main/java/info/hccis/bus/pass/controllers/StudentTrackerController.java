@@ -95,7 +95,7 @@ public class StudentTrackerController {
     private void writeReportToFile(ArrayList<StudentStudyRecord> records, String studentName) throws IOException {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmm");
         String timestamp = LocalDateTime.now().format(formatter);
-        String fileName = "C:\\ciss2232\\StudentReport_" + studentName + "_" + timestamp + ".txt";
+        String fileName = "C:\\cis2232\\StudentReport_" + studentName + "_" + timestamp + ".txt";
 
         try (FileWriter writer = new FileWriter(fileName)) {
             writer.write("STUDENT STUDY REPORT\n");
