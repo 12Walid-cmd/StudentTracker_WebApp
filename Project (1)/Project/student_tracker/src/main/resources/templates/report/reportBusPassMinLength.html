@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: head">
+    <title id="pageTitle">Student Tracker Report</title>
+</head>
+<body>
+
+<style scoped="scoped">
+    input:not(.hidden) {
+        display: inline-block;
+        float: right;
+    }
+    .cd {
+        color: #F00 !important;
+        font-weight: bold;
+        margin-bottom: -48px;
+    }
+    label {
+        margin-right: 8px;
+    }
+</style>
+
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+
+<div class="container has-text-centered">
+
+    <!-- TITLE -->
+    <h2 class="title is-2">Student Tracker Report</h2>
+
+    <!-- INPUT FORM (same layout as original example) -->
+    <form th:action="@{/studenttracker/report}" method="post"
+          style="display:inline-block;text-align:left!important">
+
+        <label>Student Name:</label>
+        <input type="text" th:field="${reportInput.studentName}" required />
+        <br></br>
+
+        <button class="centered" style="display:block;margin-top:24px!important">
+            Generate Report
+        </button>
+    </form>
+
+    <br></br>
+
+    <!-- MESSAGE IF NO RESULTS -->
+    <p th:if="${not #strings.isEmpty(message)}"
+       th:text="${message}" class="cd"></p>
+
+    <!-- RESULTS TABLE (same structure style as original) -->
+    <table class="wbb centered"
+           th:if="${not #lists.isEmpty(records)}"
+           style="padding:0!important;display:inline-block!important;margin-top:20px;"
+           border="1">
+
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student Name</th>
+            <th>Subject</th>
+            <th>Study Date</th>
+            <th>Duration (Minutes)</th>
+            <th>Study Method</th>
+            <th>Daily Goal</th>
+            <th>Weekly Goal</th>
+            <th>Notes</th>
+            <th>Created Date</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="item : ${records}">
+            <td th:text="${item.id}"></td>
+            <td th:text="${item.studentName}"></td>
+            <td th:text="${item.subject}"></td>
+            <td th:text="${item.studyDate}"></td>
+            <td th:text="${item.studyDurationMinutes}"></td>
+            <td th:text="${item.studyMethod}"></td>
+            <td th:text="${item.dailyStudyGoal}"></td>
+            <td th:text="${item.weeklyStudyGoal}"></td>
+            <td th:text="${item.notes}"></td>
+            <td th:text="${item.createdDateTime}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+</div>
+
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
+</html>
