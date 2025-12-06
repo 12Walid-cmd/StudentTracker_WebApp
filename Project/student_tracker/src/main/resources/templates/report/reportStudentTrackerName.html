@@ -2,23 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
     <title id="pageTitle">Student Study Report</title>
+    <link rel="stylesheet" href="/css/style.css">
+
 </head>
 <body>
 
-<style scoped="scoped">
-    input:not(.hidden) {
-        display: inline-block;
-        float: right;
-    }
-    .cd {
-        color: #F00 !important;
-        font-weight: bold;
-        margin-bottom: -48px;
-    }
-    label {
-        margin-right: 8px;
-    }
-</style>
 
 <nav th:replace="fragments/navHeader :: navbar"></nav>
 
@@ -37,8 +25,10 @@
     <p th:if="${message != null}" th:text="${message}" class="cd"></p>
 
     <!-- Report Results Table -->
-    <table class="wbb centered" th:if="${not #lists.isEmpty(records)}" border="1" style="margin-top:20px;">
-        <thead>
+    <table class="wbb centered"
+           th:if="${records != null and !#lists.isEmpty(records)}"
+           border="1" style="margin-top:20px;">
+    <thead>
         <tr>
             <th>ID</th>
             <th>Student Name</th>
@@ -48,6 +38,7 @@
             <th>Study Method</th>
             <th>Daily Goal</th>
             <th>Weekly Goal</th>
+            <th>Success Rate (%)</th>
             <th>Notes</th>
             <th>Created Date</th>
         </tr>
@@ -62,6 +53,7 @@
             <td th:text="${item.studyMethod}"></td>
             <td th:text="${item.dailyStudyGoal}"></td>
             <td th:text="${item.weeklyStudyGoal}"></td>
+            <td th:text="${#numbers.formatDecimal(item.successRate, 0, 2)}"></td>
             <td th:text="${item.notes}"></td>
             <td th:text="${item.createdDateTime}"></td>
         </tr>

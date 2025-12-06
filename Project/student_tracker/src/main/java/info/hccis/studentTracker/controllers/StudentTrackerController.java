@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -91,51 +92,31 @@ public class StudentTrackerController {
 
     // Inside your StudentTrackerController.java
 
-    @RequestMapping("/submit")
-    public String submit(Model model,
+    @PostMapping("/submit")
+    public String submit(
             @Valid @ModelAttribute("record") StudentStudyRecord record,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,
+            Model model
+    ) {
+        if (bindingResult.hasErrors()) {
+            // OPTIONAL: add a global form message
+            model.addAttribute("formError", "Please correct the highlighted errors");
 
-        // --- 1. Custom Business Validation (Place your own logic here) ---
-        boolean valid = true;
-
-        // Example of custom validation (currently doing nothing but keeping the structure)
-        // if (record.getStudyDurationMinutes() < 10) {
-        //     valid = false;
-        // }
-        // You can add your own checks here and handle the error messages manually
-
-        // --- 2. Check for Validation Errors (JPA annotations and custom logic) ---
-        if (!valid || bindingResult.hasErrors()) {
-
-            // Print errors to the console (for debugging, like the teacher's code)
-            System.out.println("--------------------------------------------");
-            System.out.println("Validation error - Study Tracker");
-            bindingResult.getAllErrors().forEach(error ->
-                    System.out.println(error.getObjectName() + " - " + error.getDefaultMessage())
-            );
-            System.out.println("--------------------------------------------");
-
-            // The object already contains the submitted data and validation errors.
-            // Return to the 'add' template so the user can see the errors and fix them.
+            // IMPORTANT: keep the same object so errors stay bound
             model.addAttribute("record", record);
+
             return "studenttracker/add";
         }
 
-        // --- 3. Process and Save (Only runs if validation passes) ---
-
-        // Set the created date/time only if it's a NEW record (ID is null)
-        // You may need to import java.sql.Timestamp
         if (record.getId() == null || record.getId() == 0) {
-            record.setCreatedDateTime(new java.sql.Timestamp(System.currentTimeMillis()));
+            record.setCreatedDateTime(new Timestamp(System.currentTimeMillis()));
         }
 
-        // Save the record to the database
         repo.save(record);
 
-        // Redirect back to the list view
         return "redirect:/studenttracker";
     }
+
 
     /**
      * Show input form for report
@@ -148,45 +129,6 @@ public class StudentTrackerController {
 
     /**
      * Process report (generate + display + file output)
-     */
-//    @PostMapping("/report")
-//    public String processReport(@RequestParam("studentName") String studentName, Model model) throws IOException {
-//
-//        // 1️ Get report data from DAO
-//        ArrayList<StudentStudyRecord> records = dao.selectByStudentName(studentName);
-//
-//        // 2️ Add to model for display
-//        model.addAttribute("records", records);
-//        model.addAttribute("studentName", studentName);
-//
-//        // 3️ Write report to file
-//        writeReportToFile(records, studentName);
-//
-//        // ⃣ Return the results view
-//        return "studenttracker/reportResults";
-//    }
-//    @PostMapping("/report")
-//    public String generateReport(@RequestParam String studentName, Model model) throws IOException {
-//        // Example: Fetch data from database
-//        ArrayList<StudentStudyRecord> records = dao.selectByStudentName(studentName);
-//
-//        if (records.isEmpty()) {
-//            model.addAttribute("message", "No study records found for " + studentName);
-//        } else {
-//            writeReportToFile(records, studentName);
-//            model.addAttribute("records", records);
-//        }
-//
-//        // Return same view to show results below form
-//        return "report/reportStudentTrackerName";
-//    }
-
-    /*
-    *
-    *@param model
-    * @author Walid
-    * @since 2025-11-14
-    *
      */
 
     @RequestMapping("/add")
@@ -276,12 +218,13 @@ public class StudentTrackerController {
 
             for (StudentStudyRecord record : records) {
                 writer.write(String.format(
-                        "Subject: %s | Date: %s | Duration: %d mins | Method: %s | Notes: %s\n",
+                        "Subject: %s | Date: %s | Duration: %d mins | Method: %s | Notes: %s | Success Rate: %.2f%%\\n\"",
                         record.getSubject(),
                         record.getStudyDate(),
                         record.getStudyDurationMinutes(),
                         record.getStudyMethod(),
-                        record.getNotes()
+                        record.getNotes(),
+                        record.getSuccessRate()
                 ));
             }
 
@@ -290,4 +233,34 @@ public class StudentTrackerController {
 
         }
     }
+    @PostMapping("/report")
+    public String generateReport(
+            @RequestParam String studentName,
+            Model model
+    ) {
+        // Search records
+        ArrayList<StudentStudyRecord> records =
+                new ArrayList<>(repo.findByStudentNameContaining(studentName));
+
+        // If no student found
+        if (records.isEmpty()) {
+            model.addAttribute("message", "No records found for student: " + studentName);
+            model.addAttribute("records", null);
+            return "report/reportStudentTrackerName";
+        }
+
+        // If records found
+        model.addAttribute("records", records);
+        model.addAttribute("studentName", studentName);
+
+//        // OPTIONAL: Write to file
+//        try {
+//            writeReportToFile(records, studentName);
+//        } catch (Exception e) {
+//            model.addAttribute("message", "File could not be written: " + e.getMessage());
+//        }
+
+        return "report/reportStudentTrackerName";
+    }
+
 }

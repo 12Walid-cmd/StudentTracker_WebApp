@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Add/Edit Student Study Record</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 <nav th:replace="fragments/navHeader :: navbar"></nav>
@@ -10,6 +11,7 @@
     <h2 class="title is-2" th:if= "${record.id != 0}">Edit Study Record</h2>
     <h2 class="title is-2" th:if= "${record.id == 0}">Add New Study Record</h2>
 
+    <div th:if="${formError}" class="alert alert-danger" th:text="${formError}"></div>
 
     <form th:action="@{/studenttracker/submit}" method="post" th:object="${record}"
           class="wbb" style="display:inline-block;text-align:left!important">

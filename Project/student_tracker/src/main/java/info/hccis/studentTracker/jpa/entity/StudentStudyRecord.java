@@ -86,4 +86,11 @@ public class StudentStudyRecord {
     public void setNotes(String notes) { this.notes = notes; }
     public Timestamp getCreatedDateTime() { return createdDateTime; }
     public void setCreatedDateTime(Timestamp createdDateTime) { this.createdDateTime = createdDateTime; }
+    public double getSuccessRate() {
+        if (dailyStudyGoal == null || dailyStudyGoal == 0) {
+            return 0;
+        }
+        return (studyDurationMinutes / (double) dailyStudyGoal) * 100.0;
+    }
+
 }

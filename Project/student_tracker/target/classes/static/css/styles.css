@@ -1,303 +1,124 @@
-html{
-    overflow: auto !important;
-    min-width:246px;
-
-}
-
+/* ===========================================================
+   GLOBAL VARIABLES (COLOR THEME)
+   =========================================================== */
 :root {
-
-        --main-color-light: #E3F2FD;    /* light sky blue */
-        --main-color-primary: #2196F3;  /* primary blue */
-        --main-color-dark: #0D47A1;     /* deep navy */
-        --main-color-text: #212121;     /* dark gray for text */
-        --main-color-bright: #FF5722;   /* bright coral orange accent */
-
-
+    --main-color-light: #E3F2FD;
+    --main-color-primary: #2196F3;
+    --main-color-dark: #0D47A1;
+    --main-color-text: #212121;
+    --main-color-bright: #FF5722;
 }
 
-/*input:not(.hidden){
-    display:inline-block;
-    float:right
-}*/
-.cd{
-    color:#F00!important;
-/*    font-weight:bold;*/
-/*    margin-bottom:-48px*/
-}
-label{
-    margin-right:8px
+/* ===========================================================
+   RESET & BASE STRUCTURE
+   =========================================================== */
+html {
+    overflow: auto !important;
+    min-width: 246px;
 }
 
-/*Make body height 100% so that footer stays at the bottom and position relative to the footer*/
 body {
     position: relative;
     height: 100%;
     min-height: 100vh;
     background: var(--main-color-light);
+    color: #000 !important;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-th,tr,td{
-    text-align:left;
-}
-td{
-    padding:0!important
-}
-tr th{
-    line-height:1;
-    padding-bottom:8px
-}
-tr:nth-child(even){
-    background-color: #FFF
-}
-.a{
-    padding:0 32px 0 0
-}
-h2{
-    /*    margin-bottom:-10px!important*/
-}
-table{
-    padding:0!important;
-    display:inline-block!important
+/* Typography */
+h1, h2, h3 {
+    margin: 15px 0;
+    text-align: center;
 }
 
-.logo{
-    height: 40px
-}
-.no-link {
-    color: inherit
+.title {
+    color: var(--main-color-bright) !important;
 }
 
-.no-link:hover {
-    text-decoration: none;
-    color: inherit
+/* Forms */
+label {
+    margin-right: 8px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Error */
+.cd {
+    color: #F00 !important;
+}
+
+/* ===========================================================
+   CONTAINER LAYOUT
+   =========================================================== */
+.container {
+    width: 85%;
+    margin: 30px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    min-height: 70vh;
+}
+
+.container button,
+.btn {
+    margin-top: 30px;
+    padding: 8px 18px;
+    background: var(--main-color-primary);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.container button:hover,
+.btn:hover {
+    background: var(--main-color-dark);
+}
+
+/* ===========================================================
+   TABLE DESIGN
+   =========================================================== */
+table {
+    width: auto;
+    padding: 0 !important;
+    display: inline-block !important;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 10px 15px;
+}
+
+tr:nth-child(even) {
+    background-color: #FFF;
 }
 
 .table-title {
     display: flex;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
-/*TODO:merge this with centered instead.*/
 .table-container {
-    margin: 0 auto
+    margin: 0 auto;
 }
 
-.field-id {
-    width: 20px;
-    display: none
-}
-
-.flex-sp-btw {
-    display: flex;
-    /*TODO: find way to tell NetBeans to ignore this.*/
-    justify-content: space-evenly;
-}
-
-.nav-flex {
-    display: flex;
-    justify-content: space-between
-}
-
-.links > a {
-    margin-right: 24px
-}
-
-.nav {
-    margin-bottom: 50px;
-    background: var(--main-color-dark)
-}
-
-.ftr {
-    margin-top: 50px;
-    padding: 20px;
-    background: var(--main-color-dark);
-    color: var(--main-color-text);
-    bottom: 0;
-    /*    position:absolute;*/
-    width:100%
-}
-
-.vert-align {
-    display: flex;
-    align-items: center
-}
-.centered{
-    margin: 0 auto
-}
-
-/*drop down link*/
-.ddl{
-    margin:0 8px 0 8px;
-    font-size:28px
-}
-
-/*.centered is a lie.*/
-.centered2{
-    text-align:center
-}
-
-/*reason why this ain't up there is because i want him to see it
-TODO: change to html instead of using root.*/
-/*:root{
-    background-color:var(--main-color-light);
-}*/
-
-/*blue on blisque is ugly.*/
-.navbar-link:not(.is-arrowless)::after{
-    border-color:var(--main-color-primary) !important;
-}
-
-/*better constrast, otherwise you can't see anything on a bad monitor.'*/
-.navbar-link,.navbar-link:focus,.navbar-bgn{
-    color: var(--main-color-text) !important
-}
-
-.title{
-    color: var(--main-color-bright) !important
-}
-
-
-/*better constrast, otherwise you can't see anything on a bad monitor.'*/
-body,p,strong,th{
-    color: #000 !important
-}
-
-
-/*overriding the hover*/
-.navbar-link:hover{
-    /*    background-color: #fff !important*/
-    /*    background-color: var(--main-color-primary) !important;*/
-    color: var(--main-color-dark)!important;
-}
-
-.navbar-link:active{
-    /*    background-color: #fff !important*/
-    /*    background-color: var(--main-color-primary) !important;*/
-    color: var(--main-color-dark)!important;
-}
-
-.navbar-item:hover{
-    /*    background-color: var(--main-color-primary) !important;*/
-}
-
-/*overriding the hover*/
-.navbar-item:visited{
-    color: var(--main-color-text) !important;
-    /*    background-color: var(--main-color-primary);*/
-}
-
-
-/*fixes weird issue with the index button.*/
-.navbar-bgn{
-    padding:1rem 1rem
-}
-
-.navbar-bgn:focus{
-    /*    background-color:var(--main-color-light);*/
-}
-
-.navbar-bgn:hover{
-    /*    background-color:var(--main-color-light);*/
-}
-
-/*this gives me a headache*/
-@media (max-width:1023px){
-    .navbar-bgn{
-        padding:1rem .75rem !important
-    }
-
-    /*instead of the hamburger button taking up all the space, just force it to
-    live with the object on the left.*/
-    .navbar-brand{
-        right:0;
-        position:absolute;
-        z-index:1
-    }
-
-    /*not perfect, but definitively better than before where the text would just
-    appear below it...*/
-    #navbarBasicExample{
-        width:100%;
-        position:absolute
-    }
-
-    /*align arrows with hamburger button.*/
-    .navbar-link:not(.is-arrowless)::after{
-        margin-right: 3.15px
-    }
-    /*window size compatibility*/
-    .ddl{
-        display:inline-block;
-        margin-top:16px !important
-    }
-    .nav{
-        margin-bottom:16px !important
-    }
-    .navbar-menu.is-active{
-        padding:0
-    }
-    .navbar-index{
-        padding-bottom:0.86rem;
-        padding-top:0.86rem;
-        margin-right:52px
-    }
-}
-/*white background box.*/
-.wbb, .ddl{
-    padding:0px 8px 0px 8px !important;
-    background-color:#ccc !important;
-    border:8px #ccc solid !important;
-    border-radius:12px !important;
-    white-space:nowrap !important
-}
-/*prevent text from disappearing*/
-@media screen and (min-width: 1024px){
-    .navbar-dropdown .navbar-item{
-        white-space:unset!important;
-        /*        background-color: var(--main-color-primary) !important;*/
-    }
-
-    .navbar-dropdown a.navbar-item{
-        padding-right: 16px!important
-    }
-
-    .navbar-end{
-        padding-right: 5px!important
-    }
-}
-
-.container{
-    background: var(--main-color-light);
-
-}
-.container button {
-    margin-top: 30px;
-}
-/*
-Arrange invoice list tittle and add button
-#invoiceLitsTittle {
-    width: 80%;
-    margin: auto;
-    display: flex;
-    justify-content: space-around;
-}*/
-
-/*Adjust invoiceAdd fields witdh*/
-.field:not(:last-child) {
-    margin: 0 6rem 0.75rem 6rem;
-}
-/*
-#btnInvoiceAdd {
-    margin-left: 6rem;
-}*/
-
-/*Table styles */
 .tableStyles {
-    padding: 0;
     background: #ccc;
     display: inline-block;
     border: 8px #ccc solid;
-    border-collapse: collapse;
     border-radius: 12px;
     white-space: nowrap;
 }
@@ -306,7 +127,8 @@ Arrange invoice list tittle and add button
     background-color: #fff;
 }
 
-.tableStyles th, td {
+.tableStyles th,
+.tableStyles td {
     padding-right: 45px;
 }
 
@@ -319,3 +141,213 @@ Arrange invoice list tittle and add button
 .tableStyles td:last-child {
     padding-right: 10px;
 }
+
+/* ===========================================================
+   NAVIGATION BAR
+   =========================================================== */
+.nav {
+    margin-bottom: 50px;
+    background: var(--main-color-dark);
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 40px;
+}
+
+.links > a {
+    margin-right: 24px;
+    color: var(--main-color-text) !important;
+}
+
+.navbar-link:not(.is-arrowless)::after {
+    border-color: var(--main-color-primary) !important;
+}
+
+.navbar-link,
+.navbar-link:focus,
+.navbar-bgn {
+    color: var(--main-color-text) !important;
+}
+
+.navbar-link:hover,
+.navbar-link:active {
+    color: var(--main-color-dark) !important;
+}
+
+.navbar-item:visited {
+    color: var(--main-color-text) !important;
+}
+
+.navbar-bgn {
+    padding: 1rem;
+}
+
+/* ===========================================================
+   MOBILE NAVIGATION
+   =========================================================== */
+@media (max-width: 1023px) {
+
+    .navbar-bgn {
+        padding: 1rem .75rem !important;
+    }
+
+    .navbar-brand {
+        right: 0;
+        position: absolute;
+        z-index: 1;
+    }
+
+    #navbarBasicExample {
+        width: 100%;
+        position: absolute;
+    }
+
+    .ddl {
+        display: inline-block;
+        margin-top: 16px !important;
+    }
+
+    .nav {
+        margin-bottom: 16px !important;
+    }
+
+    .navbar-menu.is-active {
+        padding: 0;
+    }
+
+    .navbar-index {
+        padding-bottom: 0.86rem;
+        padding-top: 0.86rem;
+        margin-right: 52px;
+    }
+}
+
+/* ===========================================================
+   SPECIAL BOX & WIDGETS
+   =========================================================== */
+.wbb,
+.ddl {
+    paddin
+    }
+/* ===========================================================
+   DASHBOARD CARDS
+   =========================================================== */
+.dashboard {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.dash-card {
+    width: 260px;
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 15px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;          /* remove underline */
+    color: inherit;                 /* keep text readable */
+    transition: 0.25s ease;
+}
+
+.dash-card:hover {
+    box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+    transform: translateY(-4px);
+}
+
+.dash-card h3 {
+    margin-bottom: 10px;
+    color: var(--main-color-primary);
+}
+
+.dash-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* ===========================================================
+   HERO BANNER
+   =========================================================== */
+.banner-box {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.banner-img {
+    width: 100%;
+    max-height: 260px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+.badge-success {
+    background: #4CAF50;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.badge-warning {
+    background: #FFC107;
+    color: black;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.badge-danger {
+    background-color: #dc3545;
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-align: center;
+}
+.page-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+    margin-top: 30px;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #e9f4ff;
+}
+
+.btn-add {
+    display: inline-block;
+    padding: 8px 14px;
+    margin-top: 10px;
+    background: #007bff;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.btn-add:hover {
+    background: #0056b3;
+}
+.alert-danger {
+    background: #ffdddd;
+    border: 1px solid red;
+    padding: 10px;
+    color: red;
+    margin-bottom: 15px;
+    border-radius: 6px;
+}
+
+
+

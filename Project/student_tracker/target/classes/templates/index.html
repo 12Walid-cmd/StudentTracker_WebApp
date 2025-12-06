@@ -5,8 +5,43 @@
     </head>
     <body>
         <nav th:replace="fragments/navHeader :: navbar"></nav>
+        <div class="banner-box">
+            <img src="/images/banner.jpg" class="banner-img">
+        </div>
         <div class="container centered2">
-            <h2 class="title is-2"><span th:text="#{label.welcome.to}"></span> <span th:text="#{application.name}"></span></h2>
+
+                <h1 class="title">Welcome to Student Tracker</h1>
+
+                <p style="text-align:center; font-size:18px; margin-bottom:40px;">
+                    Track your learning habits, measure consistency, and evaluate success!
+                </p>
+
+                <div class="dashboard">
+
+                    <!-- CARD 1 — Student Logs -->
+                    <a th:href="@{/studenttracker}" class="dash-card">
+                        <h3>📚 Student Logs</h3>
+                        <p>Add, view, and manage study tracking records</p>
+                    </a>
+
+                    <!-- CARD 2 — Reports -->
+                    <a th:href="@{/studenttracker/report/student/tracker/name}" class="dash-card">
+                        <h3>📊 Reports</h3>
+                        <p>Generate performance summaries and activity evaluations</p>
+                    </a>
+
+                    <!-- CARD 3 — REST Client -->
+                    <a th:href="@{/studenttracker/client/rest}" class="dash-card">
+                        <h3>🌐 REST Client</h3>
+                        <p>Interact with backend REST APIs</p>
+                    </a>
+
+                    <!-- CARD 4 — SOAP Client -->
+                    <a th:href="@{/studenttracker/client/soap}" class="dash-card">
+                        <h3>📡 SOAP Client</h3>
+                        <p>Test SOAP service integration</p>
+                    </a>
+                  </div>
         </div>
         <footer th:replace="fragments/footer :: footer"></footer>
     </body>

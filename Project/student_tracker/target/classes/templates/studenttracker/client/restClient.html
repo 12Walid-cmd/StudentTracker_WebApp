@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>REST Client Demo</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+
+<div class="container">
+    <h2 class="title is-3" style="text-align:center;">REST Client (Demo UI)</h2>
+
+    <!-- =====================
+         SECTION 1: GET ALL
+    ====================== -->
+    <h3>1. View All Records</h3>
+    <button onclick="loadAll()">Get All Students</button>
+
+    <table id="resultsTable" border="1" style="margin-top:20px; display:none;">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Student</th>
+            <th>Subject</th>
+            <th>Date</th>
+            <th>Duration</th>
+            <th>Method</th>
+            <th>Notes</th>
+        </tr>
+        </thead>
+        <tbody id="resultsBody"></tbody>
+    </table>
+
+    <hr/>
+
+    <!-- =====================
+         SECTION 2: GET BY ID
+    ====================== -->
+    <h3>2. Get By ID</h3>
+
+    <input type="number" id="idInput" placeholder="Enter ID">
+    <button onclick="loadById()">Fetch</button>
+
+    <pre id="singleResult" style="background:#f5f5f5; padding:10px; display:none;"></pre>
+
+    <hr/>
+
+    <!-- =====================
+         SECTION 3: DELETE
+    ====================== -->
+    <h3>3. Delete By ID</h3>
+
+    <input type="number" id="deleteId" placeholder="Enter ID to delete">
+    <button onclick="deleteById()">Delete</button>
+
+    <p id="deleteMessage" style="color:red; font-weight:bold;"></p>
+
+</div>
+
+<script>
+    const BASE_URL = "/StudentService/v1/students";
+
+    // 1) GET ALL
+    function loadAll() {
+        fetch(BASE_URL)
+            .then(r => r.json())
+            .then(data => {
+                let tbody = document.getElementById("resultsBody");
+                tbody.innerHTML = "";
+
+                data.forEach(st => {
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${st.id}</td>
+                            <td>${st.studentName}</td>
+                            <td>${st.subject}</td>
+                            <td>${st.studyDate}</td>
+                            <td>${st.studyDurationMinutes}</td>
+                            <td>${st.studyMethod}</td>
+                            <td>${st.notes}</td>
+                        </tr>
+                    `;
+                });
+
+                document.getElementById("resultsTable").style.display = "table";
+            });
+    }
+
+    // 2) GET BY ID
+    function loadById() {
+        let id = document.getElementById("idInput").value;
+
+        fetch(`${BASE_URL}/${id}`)
+            .then(r => {
+                if (!r.ok) throw new Error("Not found");
+                return r.json();
+            })
+            .then(data => {
+                document.getElementById("singleResult").style.display = "block";
+                document.getElementById("singleResult").textContent =
+                    JSON.stringify(data, null, 2);
+            })
+            .catch(() => {
+                document.getElementById("singleResult").style.display = "block";
+                document.getElementById("singleResult").textContent = "Record not found!";
+            });
+    }
+
+    // 3) DELETE
+    function deleteById() {
+        let id = document.getElementById("deleteId").value;
+
+        fetch(`${BASE_URL}/${id}`, { method: "DELETE" })
+            .then(r => {
+                if (r.status === 200) {
+                    document.getElementById("deleteMessage").textContent =
+                        "Record deleted successfully!";
+                } else {
+                    document.getElementById("deleteMessage").textContent =
+                        "Could not delete record!";
+                }
+            });
+    }
+</script>
+
+</body>
+</html>

@@ -2,40 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Student Study Records</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        margin: 20px;
-    }
-    h1 {
-        color: #007bff; /* Blue color for the main title */
-    }
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 15px;
-    }
-    th {
-        background-color: #343a40; /* Dark header background */
-        color: white; /* White text for headers */
-        padding: 10px;
-        text-align: left;
-    }
-    td {
-        padding: 8px;
-        border: 1px solid #dee2e6;
-    }
-    tbody tr:nth-child(even) {
-        background-color: #f8f9fa; /* Light grey for even rows (striping) */
-    }
-    .empty-message {
-        color: #dc3545; /* Red for the error/empty message */
-        font-weight: bold;
-    }
-</style>
 <h1>Student Tracker</h1>
+
+<div class="container page-card">
+    <h2>📚 Student Study Records</h2>
 
 <form th:action="@{/studenttracker}" method="get">
     <input type="text" name="keyword" th:value="${keyword}" placeholder="Search by student name">
@@ -55,8 +28,10 @@
         <th>Method</th>
         <th>Daily Goal</th>
         <th>Weekly Goal</th>
+        <th>Success Rate</th>
         <th>Notes</th>
-        <th>Created Date/Time</th> <th>Actions</th>
+        <th>Created Date/Time</th>
+        <th>Actions</th>
     </tr>
     </thead>
 
@@ -70,14 +45,20 @@
         <td th:text="${record.studyMethod}"></td>
         <td th:text="${record.dailyStudyGoal}"></td>
         <td th:text="${record.weeklyStudyGoal}"></td>
+        <td th:text="${#numbers.formatDecimal(record.successRate,1,1)} + '%'"
+            th:classappend="${record.successRate >= 80 ? 'badge-success'
+                     : (record.successRate >= 50 ? 'badge-warning'
+                     : 'badge-danger')}">
+        </td>
         <td th:text="${record.notes}"></td>
-        <td th:text="${record.createdDateTime}"></td> <td>
-        <a th:href="@{/studenttracker/edit/{id}(id=${record.id})}">Edit</a>
-        <a th:href="@{'/studenttracker/delete/' + ${record.id}}"
-           onclick="return confirm('Are you sure?')">
-            Delete
-        </a>
-    </td>
+        <td th:text="${record.createdDateTime}"></td>
+        <td>
+            <a th:href="@{/studenttracker/edit/{id}(id=${record.id})}">Edit</a>
+            <a th:href="@{'/studenttracker/delete/' + ${record.id}}"
+               onclick="return confirm('Are you sure?')">
+                Delete
+            </a>
+        </td>
     </tr>
     <tr th:if="${#lists.isEmpty(records)}">
         <td colspan="11" class="text-center text-muted py-4">
@@ -88,9 +69,8 @@
 
 </table>
 
-<div class="text-center mt-3">
-    <a th:href="@{/studenttracker/add}" href="/studenttracker/add">
-        Add New Record
+    <a class="btn-add" th:href="@{/studenttracker/add}" href="/studenttracker/add">
+        ➕Add New Record
     </a>
 </div>
 

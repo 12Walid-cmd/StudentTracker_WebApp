@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<link rel="stylesheet" href="/css/style.css">
 <body>
 <nav th:fragment="navbar" class="navbar nav" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
         <a th:href="@{/}" class="vert-align">
-            <img src="/images/ic_launcher.png" class="logo"></span>
+            <img src="/images/newLogo.jpg" class="logo"></span>
         </a>
 
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" id="burg"
@@ -26,14 +26,24 @@
                     <hr class="navbar-divider">
                 </div>
             </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                    API
+                </a>
+
+                <div class="navbar-dropdown">
+                    <a class="navbar-item" th:href="@{/studenttracker/client/rest}">
+                        REST Client
+                    </a>
+                    <a class="navbar-item" th:href="@{/studenttracker/client/soap}">
+                        SOAP Client
+                    </a>
+                </div>
+            </div>
             <div class="navbar-end">
                 <div class="navbar-item has-dropdown is-hoverable">
                     <a th:href="@{/report}" href="/about" class=" navbar-link">Reports</a>
                     <div class="navbar-dropdown">
-<!--                        <a th:href="@{/report/buspass/daterange}" class="navbar-item"-->
-<!--                           th:text="#{label.report.bus.pass.date.range}">Date Range</a>-->
-<!--                        <a th:href="@{/report/buspass/minlength}" class="navbar-item"-->
-<!--                           th:text="#{label.report.bus.pass.min.length}">Min Pass Length</a>-->
                         <a th:href="@{/studenttracker/report/student/tracker/name}" class="navbar-item">
                             Tracker Report
                         </a>

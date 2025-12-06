@@ -2,26 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/head :: head">
     <title id="pageTitle" th:text="${session.title}">Reports</title>
-    <style>
-        table {
-            margin: 20px auto;
-            border-collapse: collapse;
-        }
-        th, td {
-            text-align: left;
-            padding: 8px 16px;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        a {
-            text-decoration: none;
-            color: #007bff;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <nav th:replace="fragments/navHeader :: navbar"></nav>
