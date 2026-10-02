@@ -1,16 +1,1 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="fragments/head :: head">
-        <title id="pageTitle" th:text="${session.title}"></title>
-        <link rel="stylesheet" href="/css/style.css">
-    </head>
-    <body>
-    <nav th:replace="fragments/navHeader :: navbar"></nav>
-    <div class="container">
-        <h2 class="title is-2" th:text="${session.title}"></h2>
-        <h3><span th:text="${session.title}"></span> Data is Exported </h3>
-    </div>
-    </body>
-    <footer th:replace="fragments/footer :: footer"></footer>
-
-</html>
+<!DOCTYPE html><html xmlns:th="http://www.thymeleaf.org"><head th:replace="fragments/head :: headerFragment"></head><body><nav th:replace="fragments/navHeader :: navbar"></nav><main class="page-shell narrow"><section class="panel"><span class="eyebrow">Export complete</span><h1 th:text="${session.title}">Data export</h1><div class="alert alert-success"><span th:text="${session.title}">Student Tracker</span> data was exported successfully.</div><a th:href="@{/studenttracker}" class="button button-primary">Return to records</a></section></main><footer th:replace="fragments/footer :: footer"></footer></body></html>

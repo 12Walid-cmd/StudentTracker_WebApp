@@ -1,65 +1,45 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" href="/css/style.css">
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-<nav th:fragment="navbar" class="navbar nav" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-        <a th:href="@{/}" class="vert-align">
-            <img src="/images/newLogo.jpg" class="logo"></span>
+<nav th:fragment="navbar" class="site-nav" aria-label="Main navigation">
+    <div class="nav-shell">
+        <a th:href="@{/}" class="brand" aria-label="Student Tracker home">
+            <span class="brand-mark" aria-hidden="true">ST</span>
+            <span><strong>Student</strong> Tracker</span>
         </a>
-
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" id="burg"
-           onclick="document.querySelector('.navbar-menu').classList.toggle('is-active');"
-           data-target="navbarBasicExample">
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-        </a>
-    </div>
-    <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a th:href="@{/studenttracker}" href="/studenttracker" class=" navbar-link">Records</a>
-                <div class="navbar-dropdown">
-                    <a th:href="@{/studenttracker}" class="navbar-item">View All Records</a>
-                    <a th:href="@{/studenttracker/add}" class="navbar-item">Add New Record</a>
-                    <hr class="navbar-divider">
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-navigation">
+            <span class="sr-only">Toggle navigation</span><span></span><span></span><span></span>
+        </button>
+        <div class="nav-menu" id="primary-navigation">
+            <div class="nav-group">
+                <a th:href="@{/studenttracker}" class="nav-link">Records</a>
+                <button class="dropdown-toggle" type="button" aria-label="Records menu" aria-expanded="false">⌄</button>
+                <div class="dropdown-menu">
+                    <a th:href="@{/studenttracker}">View all records</a>
+                    <a th:href="@{/studenttracker/add}">Add new record</a>
                 </div>
             </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                    API
-                </a>
-
-                <div class="navbar-dropdown">
-                    <a class="navbar-item" th:href="@{/studenttracker/client/rest}">
-                        REST Client
-                    </a>
-                    <a class="navbar-item" th:href="@{/studenttracker/client/soap}">
-                        SOAP Client
-                    </a>
+            <div class="nav-group">
+                <span class="nav-link">API</span>
+                <button class="dropdown-toggle" type="button" aria-label="API menu" aria-expanded="false">⌄</button>
+                <div class="dropdown-menu">
+                    <a th:href="@{/studenttracker/client/rest}">REST client</a>
+                    <a th:href="@{/studenttracker/client/soap}">SOAP client</a>
                 </div>
             </div>
-            <div class="navbar-end">
-                <div class="navbar-item has-dropdown is-hoverable">
-                    <a th:href="@{/report}" href="/about" class=" navbar-link">Reports</a>
-                    <div class="navbar-dropdown">
-                        <a th:href="@{/studenttracker/report/student/tracker/name}" class="navbar-item">
-                            Tracker Report
-                        </a>
-                        <hr class="navbar-divider">
-                    </div>
+            <div class="nav-group">
+                <a th:href="@{/report}" class="nav-link">Reports</a>
+                <button class="dropdown-toggle" type="button" aria-label="Reports menu" aria-expanded="false">⌄</button>
+                <div class="dropdown-menu">
+                    <a th:href="@{/studenttracker/report/student/tracker/name}">Tracker report</a>
                 </div>
-                <div class="navbar-end">
-                    <div class="navbar-item has-dropdown is-hoverable">
-                        <a th:href="@{/about}" href="/about" class=" navbar-link">Other</a>
-                        <div class="navbar-dropdown">
-                            <a th:href="@{/about}" href="/about" class="navbar-item">About</a>
-                            <hr class="navbar-divider">
-                            <a th:href="@{/pirate}" href="/pirate" class="navbar-item">Pirate</a>
-                            <hr class="navbar-divider">
-                        </div>
-                    </div>
+            </div>
+            <div class="nav-group">
+                <a th:href="@{/about}" class="nav-link">Other</a>
+                <button class="dropdown-toggle" type="button" aria-label="Other menu" aria-expanded="false">⌄</button>
+                <div class="dropdown-menu">
+                    <a th:href="@{/about}">About</a>
+                    <a th:href="@{/pirate}">Pirate translator</a>
                 </div>
             </div>
         </div>

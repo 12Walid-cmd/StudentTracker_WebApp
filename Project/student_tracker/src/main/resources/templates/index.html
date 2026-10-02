@@ -1,48 +1,42 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head th:include="fragments/head :: headerFragment">
-        <title id="pageTitle">Performance Hall Administration</title>
-    </head>
-    <body>
-        <nav th:replace="fragments/navHeader :: navbar"></nav>
-        <div class="banner-box">
-            <img src="/images/banner.jpg" class="banner-img">
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: headerFragment"></head>
+<body>
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+<main>
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">Your study command center</span>
+            <h1>Turn study time into <span>visible progress.</span></h1>
+            <p>Student Tracker gives you one clear place to log study activity, monitor your goals, and understand the habits moving you forward.</p>
+            <div class="hero-actions">
+                <a th:href="@{/studenttracker/add}" class="button button-primary">Log a study session <span aria-hidden="true">→</span></a>
+                <a th:href="@{/studenttracker}" class="button button-secondary">View records</a>
+            </div>
+            <div class="hero-proof" aria-label="Application benefits">
+                <span><b>01</b> Track sessions</span><span><b>02</b> Measure goals</span><span><b>03</b> Review progress</span>
+            </div>
         </div>
-        <div class="container centered2">
-
-                <h1 class="title">Welcome to Student Tracker</h1>
-
-                <p style="text-align:center; font-size:18px; margin-bottom:40px;">
-                    Track your learning habits, measure consistency, and evaluate success!
-                </p>
-
-                <div class="dashboard">
-
-                    <!-- CARD 1 — Student Logs -->
-                    <a th:href="@{/studenttracker}" class="dash-card">
-                        <h3>📚 Student Logs</h3>
-                        <p>Add, view, and manage study tracking records</p>
-                    </a>
-
-                    <!-- CARD 2 — Reports -->
-                    <a th:href="@{/studenttracker/report/student/tracker/name}" class="dash-card">
-                        <h3>📊 Reports</h3>
-                        <p>Generate performance summaries and activity evaluations</p>
-                    </a>
-
-                    <!-- CARD 3 — REST Client -->
-                    <a th:href="@{/studenttracker/client/rest}" class="dash-card">
-                        <h3>🌐 REST Client</h3>
-                        <p>Interact with backend REST APIs</p>
-                    </a>
-
-                    <!-- CARD 4 — SOAP Client -->
-                    <a th:href="@{/studenttracker/client/soap}" class="dash-card">
-                        <h3>📡 SOAP Client</h3>
-                        <p>Test SOAP service integration</p>
-                    </a>
-                  </div>
+        <div class="hero-visual" aria-label="Study progress preview">
+            <div class="preview-card">
+                <div class="preview-heading"><div><small>WEEKLY PROGRESS</small><h2>Study overview</h2></div><span class="status-dot">On track</span></div>
+                <div class="progress-ring"><div><strong>78%</strong><span>goal reached</span></div></div>
+                <div class="progress-row"><span>Weekly goal</span><b>390 / 500 min</b></div>
+                <div class="progress-bar"><span></span></div>
+                <div class="mini-stats"><div><span>This week</span><b>6.5h</b></div><div><span>Sessions</span><b>8</b></div><div><span>Streak</span><b>4 days</b></div></div>
+            </div>
         </div>
-        <footer th:replace="fragments/footer :: footer"></footer>
-    </body>
+    </section>
+
+    <section class="section-shell feature-section">
+        <div class="section-heading"><div><span class="eyebrow">Everything you need</span><h2>A simpler way to stay focused</h2></div><p>Capture your work, review your patterns, and keep your study goals within reach.</p></div>
+        <div class="feature-grid">
+            <a th:href="@{/studenttracker}" class="feature-card"><span class="feature-icon">✦</span><span class="feature-number">01</span><h3>Student Logs</h3><p>Add, search, edit, and manage every study session in one organized workspace.</p><span class="card-link">Open records →</span></a>
+            <a th:href="@{/studenttracker/report/student/tracker/name}" class="feature-card"><span class="feature-icon">↗</span><span class="feature-number">02</span><h3>Reports</h3><p>Turn your activity into useful summaries and see how your study time adds up.</p><span class="card-link">View reports →</span></a>
+            <a th:href="@{/studenttracker/client/rest}" class="feature-card"><span class="feature-icon">⌘</span><span class="feature-number">03</span><h3>REST Client</h3><p>Explore student data through a clear interface connected to the existing REST API.</p><span class="card-link">Open API client →</span></a>
+        </div>
+    </section>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body>
 </html>
