@@ -1,16 +1,12 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
-<link rel="stylesheet" href="/css/style.css">
-
-    <body>
-    <footer th:fragment="footer" class="footer ftr">
-        <div>
-            <div class="content has-text-centered">
-                <!-- BJM 20200602 Issue#1-->
-                <span th:text="${#calendars.format(#calendars.createNow(), 'MMM yyyy dd  ')}"></span>&nbsp;&nbsp;<span th:text="#{label.business.name}">label business name</span>
-            </div>
-        </div>
-    </footer>
-    </body>
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer" class="site-footer">
+    <div class="footer-shell">
+        <a th:href="@{/}" class="footer-brand"><span class="brand-mark small" aria-hidden="true">ST</span> Student Tracker</a>
+        <p>Build better study habits, one session at a time.</p>
+        <p>© <span th:text="${#calendars.year(#calendars.createNow())}">2026</span> <span th:text="#{label.business.name}">CIS2232</span></p>
+    </div>
+</footer>
+</body>
 </html>

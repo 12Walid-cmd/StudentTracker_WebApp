@@ -1,79 +1,20 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Add/Edit Student Study Record</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head :: headerFragment"></head>
 <body>
 <nav th:replace="fragments/navHeader :: navbar"></nav>
-
-<div class="container has-text-centered">
-    <h2 class="title is-2" th:if= "${record.id != 0}">Edit Study Record</h2>
-    <h2 class="title is-2" th:if= "${record.id == 0}">Add New Study Record</h2>
-
-    <div th:if="${formError}" class="alert alert-danger" th:text="${formError}"></div>
-
-    <form th:action="@{/studenttracker/submit}" method="post" th:object="${record}"
-          class="wbb" style="display:inline-block;text-align:left!important">
-
-        <input type="hidden" th:field="*{id}" th:value="*{id} ?: 0" />
-
-        <p>
-
-
-
-            <label>Student Name:</label>
-            <input type="text" th:field="*{studentName}" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{studentName}')}" th:errors="*{studentName}"></p>
-
-        <p>
-            <label>Study Date:</label>
-            <input type="date" th:field="*{studyDate}" placeholder="YYYY-MM-DD" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{studyDate}')}" th:errors="*{studyDate}"></p>
-
-        <p>
-            <label>Subject:</label>
-            <input type="text" th:field="*{subject}" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{subject}')}" th:errors="*{subject}"></p>
-
-        <p>
-            <label>Duration (minutes):</label>
-            <input type="number" th:field="*{studyDurationMinutes}" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{studyDurationMinutes}')}" th:errors="*{studyDurationMinutes}"></p>
-
-        <p>
-            <label>Study Method:</label>
-            <input type="text" th:field="*{studyMethod}" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{studyMethod}')}" th:errors="*{studyMethod}"></p>
-
-        <p>
-            <label>Daily Goal (minutes):</label>
-            <input type="number" th:field="*{dailyStudyGoal}" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{dailyStudyGoal}')}" th:errors="*{dailyStudyGoal}"></p>
-
-        <p>
-            <label>Weekly Goal (minutes):</label>
-            <input type="number" th:field="*{weeklyStudyGoal}" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{weeklyStudyGoal}')}" th:errors="*{weeklyStudyGoal}"></p>
-
-        <p>
-            <label>Notes:</label>
-            <input type="text" th:field="*{notes}" />
-        </p>
-        <p class="cd" th:if="${#fields.hasErrors('*{notes}')}" th:errors="*{notes}"></p>
-
-
-        <button style="display:block;margin-top:24px!important" class="centered">Submit Record</button>
-    </form>
-
-</div>
-<footer th:replace="fragments/footer :: footer"></footer>
-</body>
-</html>
+<main class="page-shell narrow">
+<header class="page-header"><div><span class="eyebrow">Study activity</span><h1 th:text="${record.id != null and record.id != 0} ? 'Edit study record' : 'Add study record'">Add study record</h1><p>Capture the details of your study session and goals.</p></div></header>
+<div th:if="${formError}" class="alert alert-danger" th:text="${formError}"></div>
+<form class="panel" th:action="@{/studenttracker/submit}" method="post" th:object="${record}"><input type="hidden" th:field="*{id}">
+<div class="form-grid">
+<div class="field"><label for="studentName">Student name</label><input id="studentName" type="text" th:field="*{studentName}" autocomplete="name" placeholder="e.g. Alex Morgan"><p class="field-error" th:if="${#fields.hasErrors('studentName')}" th:errors="*{studentName}"></p></div>
+<div class="field"><label for="studyDate">Study date</label><input id="studyDate" type="date" th:field="*{studyDate}"><p class="field-error" th:if="${#fields.hasErrors('studyDate')}" th:errors="*{studyDate}"></p></div>
+<div class="field"><label for="subject">Subject</label><input id="subject" type="text" th:field="*{subject}" placeholder="e.g. Mathematics"><p class="field-error" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p></div>
+<div class="field"><label for="duration">Duration (minutes)</label><input id="duration" type="number" min="0" th:field="*{studyDurationMinutes}" placeholder="60"><p class="field-error" th:if="${#fields.hasErrors('studyDurationMinutes')}" th:errors="*{studyDurationMinutes}"></p></div>
+<div class="field"><label for="method">Study method</label><input id="method" type="text" th:field="*{studyMethod}" placeholder="Reading, practice, group work…"><p class="field-error" th:if="${#fields.hasErrors('studyMethod')}" th:errors="*{studyMethod}"></p></div>
+<div class="field"><label for="dailyGoal">Daily goal (minutes)</label><input id="dailyGoal" type="number" min="0" th:field="*{dailyStudyGoal}" placeholder="120"><p class="field-error" th:if="${#fields.hasErrors('dailyStudyGoal')}" th:errors="*{dailyStudyGoal}"></p></div>
+<div class="field"><label for="weeklyGoal">Weekly goal (minutes)</label><input id="weeklyGoal" type="number" min="0" th:field="*{weeklyStudyGoal}" placeholder="600"><p class="field-error" th:if="${#fields.hasErrors('weeklyStudyGoal')}" th:errors="*{weeklyStudyGoal}"></p></div>
+<div class="field full"><label for="notes">Notes</label><textarea id="notes" th:field="*{notes}" placeholder="What did you cover? Add any useful context."></textarea><p class="field-error" th:if="${#fields.hasErrors('notes')}" th:errors="*{notes}"></p></div>
+</div><div class="form-actions"><button class="button button-primary" type="submit" th:text="${record.id != null and record.id != 0} ? 'Save changes' : 'Add record'">Add record</button><a class="button button-ghost" th:href="@{/studenttracker}">Cancel</a></div></form>
+</main><footer th:replace="fragments/footer :: footer"></footer></body></html>

@@ -1,78 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Student Study Records</title>
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+<head th:replace="fragments/head :: headerFragment"></head>
 <body>
-<h1>Student Tracker</h1>
-
-<div class="container page-card">
-    <h2>📚 Student Study Records</h2>
-
-<form th:action="@{/studenttracker}" method="get">
-    <input type="text" name="keyword" th:value="${keyword}" placeholder="Search by student name">
-    <button type="submit">Search</button>
-</form>
-
-<hr/>
-
-<table border="1" cellspacing="0" cellpadding="6">
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Student Name</th>
-        <th>Subject</th>
-        <th>Date</th>
-        <th>Duration (mins)</th>
-        <th>Method</th>
-        <th>Daily Goal</th>
-        <th>Weekly Goal</th>
-        <th>Success Rate</th>
-        <th>Notes</th>
-        <th>Created Date/Time</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    <tr th:each="record : ${records}">
-        <td th:text="${record.id}"></td>
-        <td th:text="${record.studentName}"></td>
-        <td th:text="${record.subject}"></td>
-        <td th:text="${record.studyDate}"></td>
-        <td th:text="${record.studyDurationMinutes}"></td>
-        <td th:text="${record.studyMethod}"></td>
-        <td th:text="${record.dailyStudyGoal}"></td>
-        <td th:text="${record.weeklyStudyGoal}"></td>
-        <td th:text="${#numbers.formatDecimal(record.successRate,1,1)} + '%'"
-            th:classappend="${record.successRate >= 80 ? 'badge-success'
-                     : (record.successRate >= 50 ? 'badge-warning'
-                     : 'badge-danger')}">
-        </td>
-        <td th:text="${record.notes}"></td>
-        <td th:text="${record.createdDateTime}"></td>
-        <td>
-            <a th:href="@{/studenttracker/edit/{id}(id=${record.id})}">Edit</a>
-            <a th:href="@{'/studenttracker/delete/' + ${record.id}}"
-               onclick="return confirm('Are you sure?')">
-                Delete
-            </a>
-        </td>
-    </tr>
-    <tr th:if="${#lists.isEmpty(records)}">
-        <td colspan="11" class="text-center text-muted py-4">
-            No study records found.
-        </td>
-    </tr>
-    </tbody>
-
-</table>
-
-    <a class="btn-add" th:href="@{/studenttracker/add}" href="/studenttracker/add">
-        ➕Add New Record
-    </a>
-</div>
-
-</body>
-</html>
+<nav th:replace="fragments/navHeader :: navbar"></nav>
+<main class="page-shell">
+    <header class="page-header"><div><span class="eyebrow">Study activity</span><h1>Student records</h1><p>Review, search, and manage every logged study session.</p></div><a class="button button-primary" th:href="@{/studenttracker/add}">+ Add new record</a></header>
+    <div th:if="${messageSuccess}" class="alert alert-success" th:text="${messageSuccess}"></div>
+    <div th:if="${messageError}" class="alert alert-danger" th:text="${messageError}"></div>
+    <section class="panel">
+        <div class="toolbar"><form class="search-bar" th:action="@{/studenttracker}" method="get"><label class="sr-only" for="record-search">Search by student name</label><input id="record-search" type="search" name="keyword" th:value="${keyword}" placeholder="Search by student name"><button class="button button-secondary" type="submit">Search</button></form><a th:if="${keyword}" th:href="@{/studenttracker}" class="button button-ghost">Clear search</a></div>
+        <div class="table-wrap"><table class="data-table"><thead><tr><th>ID</th><th>Student</th><th>Subject</th><th>Date</th><th>Duration</th><th>Method</th><th>Daily goal</th><th>Weekly goal</th><th>Success</th><th>Notes</th><th>Created</th><th>Actions</th></tr></thead>
+        <tbody><tr th:each="record : ${records}"><td th:text="${record.id}"></td><td><strong th:text="${record.studentName}"></strong></td><td th:text="${record.subject}"></td><td th:text="${record.studyDate}"></td><td th:text="${record.studyDurationMinutes} + ' min'"></td><td th:text="${record.studyMethod}"></td><td th:text="${record.dailyStudyGoal} + ' min'"></td><td th:text="${record.weeklyStudyGoal} + ' min'"></td><td><span class="badge" th:text="${#numbers.formatDecimal(record.successRate,1,1)} + '%'" th:classappend="${record.successRate >= 80 ? ' badge-success' : (record.successRate >= 50 ? ' badge-warning' : ' badge-danger')}"></span></td><td th:text="${record.notes}"></td><td th:text="${record.createdDateTime}"></td><td><div class="table-actions"><a class="button button-ghost" th:href="@{/studenttracker/edit/{id}(id=${record.id})}">Edit</a><a class="button button-danger" th:href="@{'/studenttracker/delete/' + ${record.id}}" onclick="return confirm('Are you sure you want to delete this record?')">Delete</a></div></td></tr>
+        <tr th:if="${#lists.isEmpty(records)}"><td colspan="12" class="empty-state"><strong>No study records found.</strong><br>Try another name or add your first study session.</td></tr></tbody></table></div>
+    </section>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+</body></html>
